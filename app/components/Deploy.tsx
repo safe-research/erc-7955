@@ -1,5 +1,6 @@
 import {
   Alert,
+  Button,
   Card,
   Center,
   Code,
@@ -25,6 +26,7 @@ import { useBootstrapContract } from "@/hooks/useBootstrapContract.ts";
 import { useBurnerMissingFunds } from "@/hooks/useBurnerMissingFunds.ts";
 import { useDeployFactoryTransaction } from "@/hooks/useDeployFactoryTransaction.ts";
 import { useFactoryDeployed } from "@/hooks/useFactoryDeployed.ts";
+import { useSupports7702 } from "@/hooks/useSupports7702.ts";
 
 function DeployBootstrap({
   onDeployed,
@@ -201,13 +203,19 @@ function Deploy() {
 }
 
 function Connected() {
+  const support = useSupports7702();
+  const [dismiss7702Check, setDismiss7702Check] = useState(false);
+
   const bootstrap = useBootstrapContract();
   const transaction = useDeployFactoryTransaction({ bootstrap });
   const funding = useBurnerMissingFunds({ transaction });
   const factory = useFactoryDeployed();
 
   const isPending =
-    bootstrap.isLoading || funding.isLoading || factory.isPending;
+    support.isLoading ||
+    bootstrap.isLoading ||
+    funding.isLoading ||
+    factory.isPending;
   const active = factory.data
     ? 3
     : funding.data?.missingFunds === 0n
@@ -227,6 +235,20 @@ function Connected() {
     <Center>
       <Loader />
     </Center>
+  ) : support.data !== true && !dismiss7702Check ? (
+    <Alert icon={"⚠"} title="Error" color="red">
+      <Stack>
+        <Text size="sm">
+          The connected network does not appear to support EIP-7702, the
+          ERC-7955 permissionless CREATE2 factory deployment is likely to fail.
+        </Text>
+        <Group justify="flex-end">
+          <Button color="gray" onClick={() => setDismiss7702Check(true)}>
+            Continue Anyway
+          </Button>
+        </Group>
+      </Stack>
+    </Alert>
   ) : (
     <Stack>
       <Stepper active={active}>
