@@ -10,7 +10,7 @@ const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.29",
     settings: {
-      evmVersion: "prague",
+      evmVersion: "paris",
       optimizer: {
         enabled: true,
         runs: 1,
