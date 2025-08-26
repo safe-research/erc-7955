@@ -203,7 +203,7 @@ function Deploy() {
 function Connected() {
   const bootstrap = useBootstrapContract();
   const transaction = useDeployFactoryTransaction({ bootstrap });
-  const funding = useBurnerMissingFunds({ transaction });
+  const [funding, fundingError] = useBurnerMissingFunds({ transaction });
   const factory = useFactoryDeployed();
 
   const isPending =
@@ -252,20 +252,22 @@ function Connected() {
           <Deployed />
         </Stepper.Completed>
       </Stepper>
-      {funding.error && (
-        <Notification
-          color="red"
-          title="Error fetching burner account information"
-        >
-          {funding.error.message}
-        </Notification>
-      )}
       {factory.error && (
         <Notification
           color="red"
           title="Error fetching CREATE2 factory deployment status"
+          withCloseButton={false}
         >
           {factory.error.message}
+        </Notification>
+      )}
+      {fundingError && (
+        <Notification
+          color="red"
+          title="Error fetching burner account information"
+          withCloseButton={false}
+        >
+          {fundingError.message}
         </Notification>
       )}
     </Stack>

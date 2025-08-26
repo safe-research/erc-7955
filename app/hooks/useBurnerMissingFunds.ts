@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { formatTransactionRequest, type TransactionRequestEIP7702 } from "viem";
 import { estimateGas, getBalance, getGasPrice } from "viem/actions";
 import { useClient } from "wagmi";
@@ -18,7 +19,8 @@ function useBurnerMissingFunds({
   const client = useClient();
   const burner = useBurnerAccount();
 
-  return useQuery({
+  const [stickyError, setStickyError] = useState<Error | null>(null);
+  const query = useQuery({
     queryKey: [
       "burner:missing-funds",
       burner.address,
@@ -51,6 +53,16 @@ function useBurnerMissingFunds({
     enabled: !!client,
     refetchInterval: 1000,
   });
+
+  useEffect(() => {
+    if (query.status === "success") {
+      setStickyError(null);
+    } else if (query.status === "error") {
+      setStickyError(query.error);
+    }
+  }, [query.status, query.error]);
+
+  return [query, stickyError] as const;
 }
 
 export { useBurnerMissingFunds };
