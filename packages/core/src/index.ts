@@ -1,3 +1,12 @@
+import Bootstrap from "../build/artifacts/contracts/Bootstrap.sol/Bootstrap.json" with {
+  type: "json",
+};
+
+const bootstrap = Object.freeze({
+  abi: Bootstrap.abi,
+  bytecode: Bootstrap.bytecode as `0x${string}`,
+});
+
 const deployer = Object.freeze({
   address: "0x962560A0333190D57009A0aAAB7Bfa088f58461C",
   mnemonic: "make code code code code code code code code code code coconut",
@@ -15,4 +24,4 @@ const factory = Object.freeze({
     "0x2ad75e1e9642e6fce7d293d52fa5a8f62a79a2079abb7402256add02d6e8bc30",
 });
 
-export { deployer, factory };
+export { bootstrap, deployer, factory };

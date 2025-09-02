@@ -1,6 +1,6 @@
+import { factory } from "@safe-research/erc-7955";
 import { useMemo } from "react";
 import { useBytecode } from "wagmi";
-import { factory } from "@/erc-7955.ts";
 
 function useFactoryDeployed() {
   const bytecode = useBytecode({

@@ -1,3 +1,4 @@
+import { bootstrap, deployer } from "@safe-research/erc-7955";
 import { useCallback, useEffect, useState } from "react";
 import {
   type Address,
@@ -6,7 +7,6 @@ import {
 } from "viem";
 import { signAuthorization } from "viem/accounts";
 import { useTransactionCount } from "wagmi";
-import { bootstrap, deployer } from "@/erc-7955.ts";
 
 function useDeployFactoryTransaction({
   bootstrap: { address: bootstrapAddress },

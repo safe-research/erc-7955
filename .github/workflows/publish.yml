@@ -2,8 +2,7 @@ name: Publish
 
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches: [main]
 
 permissions:
   contents: read
@@ -28,10 +27,10 @@ jobs:
           cache: "npm"
       - uses: actions/configure-pages@v5
       - run: npm ci
-      - run: npm run build:pages
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: app/dist
+          path: packages/app/dist
 
   deploy:
     environment:

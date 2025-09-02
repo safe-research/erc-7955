@@ -1,11 +1,11 @@
-import viem from "@nomicfoundation/hardhat-toolbox-viem";
+import toolbox from "@nomicfoundation/hardhat-toolbox-viem";
 import type { HardhatUserConfig } from "hardhat/config";
 
 const config: HardhatUserConfig = {
-  plugins: [viem],
+  plugins: [toolbox],
   paths: {
-    artifacts: "build/hardhat/artifacts",
-    cache: "build/hardhat/cache",
+    artifacts: "build/artifacts",
+    cache: "build/cache",
   },
   solidity: {
     version: "0.8.29",

@@ -1,0 +1,27 @@
+{
+  "name": "@safe-research/erc-7955-app",
+  "version": "1.0.0",
+  "description": "ERC-7955: Permissionless CREATE2 Factory App",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "start": "vite"
+  },
+  "author": "Safe Research <research@safe.global>",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@mantine/core": "^8.2.8",
+    "@safe-research/erc-7955": "^1.0.0",
+    "@tanstack/react-query": "^5.85.9",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "viem": "^2.37.1",
+    "wagmi": "^2.16.9"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "vite": "^7.1.4"
+  }
+}
