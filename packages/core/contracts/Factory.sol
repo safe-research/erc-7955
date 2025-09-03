@@ -2,8 +2,8 @@
 pragma solidity ^0.8.29;
 
 /// @notice CREATE2 Deployment Factory
-/// @dev The factory itself is implemented in EVM assembly (see 'Factory.evm')
-///      and this library exports constants for use in Solidity.
+/// @dev The factory itself is implemented in EVM assembly (see 'bytecode/'
+///      directory) and this library exports constants for use in Solidity.
 library Factory {
     address internal constant DEPLOYER = 0x962560A0333190D57009A0aAAB7Bfa088f58461C;
     bytes32 internal constant SALT = hex"000000000000000000000000000000000000000000000000000000000001bec5";

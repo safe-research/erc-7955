@@ -3,11 +3,11 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: "app",
   plugins: [react()],
+  base: "/erc-7955/",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "app"),
+      "@": path.resolve(__dirname, "src"),
     },
   },
 });

@@ -11,6 +11,7 @@ import {
   Stepper,
   Text,
 } from "@mantine/core";
+import { bootstrap } from "@safe-research/erc-7955";
 import { useEffect, useState } from "react";
 import {
   type Address,
@@ -21,7 +22,6 @@ import { useAccount, useDeployContract, useSendTransaction } from "wagmi";
 import { Copy } from "@/components/Copy.tsx";
 import { TransactionButton } from "@/components/TransactionButton.tsx";
 import { getBurnerPrivateKey, useBurnerAccount } from "@/contexts/Burner.tsx";
-import { bootstrap } from "@/erc-7955.ts";
 import { useBootstrapContract } from "@/hooks/useBootstrapContract.ts";
 import { useBurnerMissingFunds } from "@/hooks/useBurnerMissingFunds.ts";
 import { useDeployFactoryTransaction } from "@/hooks/useDeployFactoryTransaction.ts";
