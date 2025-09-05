@@ -1,5 +1,5 @@
 {
-  "name": "@safe-research/erc-7955",
+  "name": "@erc-7955/core",
   "version": "1.0.0",
   "description": "ERC-7955: Permissionless CREATE2 Factory",
   "type": "module",

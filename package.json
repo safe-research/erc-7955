@@ -1,5 +1,6 @@
 {
-  "name": "@safe-research/erc-7955-monorepo",
+  "name": "@erc-7955/monorepo",
+  "private": true,
   "description": "ERC-7955: Permissionless CREATE2 Factory",
   "author": "Safe Research <research@safe.global>",
   "license": "GPL-3.0-only",
