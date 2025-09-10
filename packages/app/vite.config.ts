@@ -7,7 +7,8 @@ export default defineConfig({
   base: "/erc-7955/",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "$/": `${path.resolve(__dirname, "src")}/`,
+      "$status/": `${path.resolve(__dirname, "status/src")}/`,
     },
   },
 });

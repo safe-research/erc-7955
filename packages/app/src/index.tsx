@@ -6,9 +6,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createConfig, http, WagmiProvider } from "wagmi";
 import { mainnet } from "wagmi/chains";
-import { App } from "@/components/App.tsx";
-import { BurnerProvider } from "@/contexts/Burner.tsx";
-import { ConnectorProvider } from "@/contexts/Connector.tsx";
+import { App } from "$/components/App.tsx";
+import { BurnerProvider } from "$/contexts/Burner.tsx";
+import { ConnectorProvider } from "$/contexts/Connector.tsx";
 
 const root = document.getElementById("root");
 if (root && !root.innerHTML) {

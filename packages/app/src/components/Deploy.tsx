@@ -19,14 +19,14 @@ import {
   type TransactionRequestEIP7702,
 } from "viem";
 import { useAccount, useDeployContract, useSendTransaction } from "wagmi";
-import { Copy } from "@/components/Copy.tsx";
-import { TransactionButton } from "@/components/TransactionButton.tsx";
-import { getBurnerPrivateKey, useBurnerAccount } from "@/contexts/Burner.tsx";
-import { useBootstrapContract } from "@/hooks/useBootstrapContract.ts";
-import { useBurnerMissingFunds } from "@/hooks/useBurnerMissingFunds.ts";
-import { useDeployFactoryTransaction } from "@/hooks/useDeployFactoryTransaction.ts";
-import { useFactoryDeployed } from "@/hooks/useFactoryDeployed.ts";
-import { useSupports7702 } from "@/hooks/useSupports7702.ts";
+import { Copy } from "$/components/Copy.tsx";
+import { TransactionButton } from "$/components/TransactionButton.tsx";
+import { getBurnerPrivateKey, useBurnerAccount } from "$/contexts/Burner.tsx";
+import { useBootstrapContract } from "$/hooks/useBootstrapContract.ts";
+import { useBurnerMissingFunds } from "$/hooks/useBurnerMissingFunds.ts";
+import { useDeployFactoryTransaction } from "$/hooks/useDeployFactoryTransaction.ts";
+import { useFactoryDeployed } from "$/hooks/useFactoryDeployed.ts";
+import { useSupports7702 } from "$/hooks/useSupports7702.ts";
 
 function DeployBootstrap({
   onDeployed,
