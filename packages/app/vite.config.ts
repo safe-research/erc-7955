@@ -4,7 +4,14 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/erc-7955/",
+  build: {
+    rollupOptions: {
+      input: {
+        index: path.resolve(__dirname, "index.html"),
+        status: path.resolve(__dirname, "status/index.html"),
+      },
+    },
+  },
   resolve: {
     alias: {
       "$/": `${path.resolve(__dirname, "src")}/`,
