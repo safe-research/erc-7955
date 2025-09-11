@@ -5,7 +5,8 @@
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "paths": {
-      "@/*": ["./src/*"]
+      "$/*": ["./src/*"],
+      "$status/*": ["./status/src/*"]
     },
 
     "allowImportingTsExtensions": true,
@@ -22,5 +23,5 @@
     "strict": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["src"]
+  "include": ["vite-env.d.ts", "src", "status/src"]
 }

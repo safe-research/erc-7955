@@ -10,14 +10,14 @@ import {
   Text,
 } from "@mantine/core";
 import { useState } from "react";
-import { Connect } from "@/components/Connect.tsx";
-import { Deploy } from "@/components/Deploy.tsx";
+import { Connect } from "$/components/Connect.tsx";
+import { Deploy } from "$/components/Deploy.tsx";
 
 function App() {
   const [showBanner, setShowBanner] = useState(true);
 
   return (
-    <AppShell header={{ height: 60 }} padding="md">
+    <AppShell header={{ height: 60 }} footer={{ height: 42 }} padding="md">
       <AppShell.Header>
         <Group h="100%" px="md" justify="space-between">
           <Text>ERC-7955: Permissionless CREATE2 Factory</Text>
@@ -65,6 +65,27 @@ function App() {
           <Deploy />
         </Container>
       </AppShell.Main>
+      <AppShell.Footer>
+        <Group h="100%" justify="center">
+          <Anchor
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://safe.dev"
+          >
+            Built by Safe Research
+          </Anchor>
+          <Text>&nbsp;&hearts;&nbsp;</Text>
+          <Anchor
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/safe-research/erc-7955"
+          >
+            Source on GitHub
+          </Anchor>
+          <Text>&nbsp;&hearts;&nbsp;</Text>
+          <Anchor href={`${import.meta.env.BASE_URL}status/`}>Status</Anchor>
+        </Group>
+      </AppShell.Footer>
     </AppShell>
   );
 }

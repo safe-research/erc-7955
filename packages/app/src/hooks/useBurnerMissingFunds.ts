@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { formatTransactionRequest, type TransactionRequestEIP7702 } from "viem";
 import { estimateGas, getBalance, getGasPrice } from "viem/actions";
 import { useClient } from "wagmi";
-import { useBurnerAccount } from "@/contexts/Burner";
+import { useBurnerAccount } from "$/contexts/Burner";
 
 const scale = {
   base: 10n,
