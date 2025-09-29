@@ -74,29 +74,7 @@ async function isErc7955Deployed({ client }: { client: Client }) {
 }
 
 async function isEip7702Supported({ client }: { client: Client }) {
-  // We have two kinds of `eth_call`s that we can do to detect EIP-7702 support
-  // on a chain:
-  // 1. Call with a delegation to a known contract (we use CREATE2 deployers
-  //    as they are very widely available on chains)
-  // 2. Call with a delegation to a state override
-  //
-  // We prefer 1, as not all RPCs support state overrides.
-  const calls = await Promise.all(
-    [ERC7702_CALLS.safeSingletonFactory, ERC7702_CALLS.nicksDeployer].map(
-      async (promise) => {
-        const call = await promise;
-        const bytecode = await getCode(
-          client,
-          call.request.authorizationList[0],
-        );
-        const available = bytecode !== undefined;
-        return available ? call : null;
-      },
-    ),
-  );
-  const { request, response } =
-    calls.find((call) => !!call) ?? (await ERC7702_CALLS.echo);
-
+  const { request, response } = await eip7702PreferredCall({ client });
   try {
     const { data } = await call(client, request);
     return data === response.data;
@@ -112,6 +90,35 @@ async function isEip7702Supported({ client }: { client: Client }) {
         return false;
     }
   }
+}
+
+async function eip7702PreferredCall({ client }: { client: Client }) {
+  // We have two kinds of `eth_call`s that we can do to detect EIP-7702 support
+  // on a chain:
+  // 1. Call with a delegation to a known contract (we use CREATE2 deployers
+  //    as they are very widely available on chains)
+  // 2. Call with a delegation to a state override
+  //
+  // We prefer 1, as not all RPCs support state overrides. Try to find a
+  // deployed contract that we can use.
+  const contractCalls = await Promise.all([
+    ERC7702_CALLS.safeSingletonFactory,
+    ERC7702_CALLS.nicksDeployer,
+  ]);
+  const contractAddresses = contractCalls.map(
+    ({ request }) => request.authorizationList[0],
+  );
+  const contractCodes = await Promise.all(
+    contractAddresses.map((address) => getCode(client, address)),
+  );
+  for (let i = 0; i < contractCalls.length; i++) {
+    if (contractCodes[i] !== undefined) {
+      return contractCalls[i];
+    }
+  }
+
+  // None of the contracts are deployed, so fall back to using a state override.
+  return await ERC7702_CALLS.echo;
 }
 
 async function eip7702RandomAuthorization(contract: { address: Address }) {
