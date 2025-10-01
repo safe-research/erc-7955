@@ -1,3 +1,6 @@
+> [!WARNING]
+> Code in this repository is not audited and may contain serious security holes. Use at your own risk.
+
 # ERC-7955: Permissionless CREATE2 Factory
 
 This project implements [ERC-7955: Permissionless CREATE2 Factory](https://ercs.ethereum.org/ERCS/erc-7955): a mechanism for permissionlessly deploying CREATE2 factory contracts (similar to the Safe singleton factory). This is an improvement over the status quo:
